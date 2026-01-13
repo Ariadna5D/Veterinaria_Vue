@@ -29,7 +29,7 @@ const animales = ref([]);
 
 onMounted(async () => {
     try {
-        const res = await fetch('/animales.json');
+        const res = await fetch(`${import.meta.env.BASE_URL}animales.json`);
         if (res.ok) animales.value = await res.json();
     } catch (e) { console.error(e); }
 });

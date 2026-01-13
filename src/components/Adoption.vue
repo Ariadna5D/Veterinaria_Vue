@@ -8,18 +8,23 @@ const adopciones = ref([]);
 // Esta es la funcion AJAX que nos permitirá llevar la sincronizacion
 const cargarAdopciones = async () => {
     try {
-        // buscamos el json
-        const respuesta = await fetch('/adopciones.json');
+        const respuesta = await fetch(`${import.meta.env.BASE_URL}adopciones.json`);
 
-        // lo pasamos a objeto
-        adopciones.value = await respuesta.json();
+        const datos = await respuesta.json();
+
+        adopciones.value = datos.map(animal => {
+            return {
+                ...animal,
+                imagen: `${import.meta.env.BASE_URL}${animal.imagen.slice(1)}`
+            }
+        });
+
     } catch (error) {
         console.error("Error al cargar los datos:", error);
     }
 };
 
-// se usa onmounted para que no se pise con la carga de la página,
-// de esta manera no intenta acceder a informacion que todavía no existe
+// se usa onmounted para que no se pise con la carga de la página
 onMounted(() => {
     cargarAdopciones();
 });
@@ -28,7 +33,6 @@ onMounted(() => {
 <template>
     <div class="grid-adopciones">
         <div v-for="animal in adopciones" :key="animal.id">
-            <!-- Tarjeta de los animales para adopcion -->
             <Card class="h-full animal-card">
                 <template #header>
                     <img :src="animal.imagen" :alt="animal.nombre" class="animal-img" />
@@ -54,7 +58,6 @@ onMounted(() => {
     </div>
 </template>
 
-<!-- Estilos solo para esta página -->
 <style scoped>
 .grid-adopciones {
     display: grid;
