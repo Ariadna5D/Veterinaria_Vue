@@ -1,0 +1,142 @@
+[
+  {
+    "id": 7,
+    "nombre": "Cooper",
+    "edad": "3 meses",
+    "personalidad": ["Juguetón", "Activo", "Independiente"],
+    "imagen": "/img/perro7.jpg"
+  },
+  {
+    "id": 16,
+    "nombre": "Nala",
+    "edad": "4 años",
+    "personalidad": ["Independiente", "Activo"],
+    "imagen": "/img/gato6.jpg"
+  },
+  {
+    "id": 9,
+    "nombre": "Bailey",
+    "edad": "4 años",
+    "personalidad": ["Juguetón"],
+    "imagen": "/img/perro9.jpg"
+  },
+  {
+    "id": 15,
+    "nombre": "Milo",
+    "edad": "3 meses",
+    "personalidad": ["Cariñoso", "Sociable", "Protector"],
+    "imagen": "/img/gato5.jpg"
+  },
+  {
+    "id": 6,
+    "nombre": "Lucy",
+    "edad": "3 meses",
+    "personalidad": ["Cariñoso", "Juguetón"],
+    "imagen": "/img/perro6.jpg"
+  },
+  {
+    "id": 17,
+    "nombre": "Simba",
+    "edad": "4 años",
+    "personalidad": ["Leal", "Activo"],
+    "imagen": "/img/gato7.jpg"
+  },
+  {
+    "id": 10,
+    "nombre": "Sadie",
+    "edad": "4 años",
+    "personalidad": ["Cariñoso"],
+    "imagen": "/img/perro10.jpg"
+  },
+  {
+    "id": 5,
+    "nombre": "Charlie",
+    "edad": "5 años",
+    "personalidad": ["Protector", "Inteligente"],
+    "imagen": "/img/perro5.jpg"
+  },
+  {
+    "id": 18,
+    "nombre": "Mia",
+    "edad": "7 años",
+    "personalidad": ["Leal", "Tranquilo", "Independiente"],
+    "imagen": "/img/gato8.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "Bella",
+    "edad": "7 años",
+    "personalidad": ["Activo"],
+    "imagen": "/img/perro2.jpg"
+  },
+  {
+    "id": 12,
+    "nombre": "Luna",
+    "edad": "7 años",
+    "personalidad": ["Protector", "Cariñoso"],
+    "imagen": "/img/gato2.jpg"
+  },
+  {
+    "id": 8,
+    "nombre": "Lola",
+    "edad": "8 meses",
+    "personalidad": ["Sociable"],
+    "imagen": "/img/perro8.jpg"
+  },
+  {
+    "id": 19,
+    "nombre": "Jack",
+    "edad": "4 años",
+    "personalidad": ["Activo", "Curioso", "Tranquilo"],
+    "imagen": "/img/gato9.jpg"
+  },
+  {
+    "id": 20,
+    "nombre": "Sophie",
+    "edad": "3 años",
+    "personalidad": ["Protector", "Independiente", "Cariñoso"],
+    "imagen": "/img/gato10.jpg"
+  },
+  {
+    "id": 14,
+    "nombre": "Chloe",
+    "edad": "10 meses",
+    "personalidad": ["Independiente", "Protector", "Leal"],
+    "imagen": "/img/gato4.jpg"
+  },
+  {
+    "id": 13,
+    "nombre": "Leo",
+    "edad": "3 años",
+    "personalidad": ["Sociable", "Juguetón"],
+    "imagen": "/img/gato3.jpg"
+  },
+  {
+    "id": 1,
+    "nombre": "Max",
+    "edad": "1 año",
+    "personalidad": ["Cariñoso"],
+    "imagen": "/img/perro1.jpg"
+  },
+  {
+    "id": 4,
+    "nombre": "Daisy",
+    "edad": "8 meses",
+    "personalidad": ["Cariñoso", "Tranquilo"],
+    "imagen": "/img/perro4.jpg"
+  },
+  {
+    "id": 11,
+    "nombre": "Oliver",
+    "edad": "7 años",
+    "personalidad": ["Independiente", "Sociable", "Leal"],
+    "imagen": "/img/gato1.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "Rocky",
+    "edad": "8 meses",
+    "personalidad": ["Leal", "Curioso", "Inteligente"],
+    "imagen": "/img/perro3.jpg"
+  }
+]
