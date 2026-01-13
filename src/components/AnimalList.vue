@@ -49,7 +49,6 @@ const filtros = ref({
 <style scoped>
 .expansion-content {
     padding: 1rem;
-    background-color: white;
     border-radius: 0.2rem;
     margin-left: 3rem;
 }

@@ -35,7 +35,7 @@ onMounted(() => {
         <div v-for="animal in adopciones" :key="animal.id">
             <Card class="h-full animal-card">
                 <template #header>
-                    <img :src="animal.imagen" :alt="animal.nombre" class="animal-img" />
+                    <img :src="animal.imagen" :alt="'Foto de ' + animal.nombre" class="animal-img" />
                 </template>
 
                 <template #title>
@@ -75,7 +75,6 @@ onMounted(() => {
 
 .animal-card {
     transition: transform 0.2s;
-    border: 1px solid white;
 }
 
 .flex-wrap {

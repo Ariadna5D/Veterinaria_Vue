@@ -23,8 +23,8 @@ const validarYEnviar = () => {
 
     // --- REGEX ---
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^[0-9]{9}$/; // Valida exactamente 9 números
-    const cpRegex = /^[0-9]{5}$/;    // Valida exactamente 5 números
+    const phoneRegex = /^[0-9]{9}$/; 
+    const cpRegex = /^[0-9]{5}$/;    
 
     if (!emailRegex.test(form.value.email)) {
         errores.value.email = t('contacto.errores.formato');
@@ -58,46 +58,84 @@ const validarYEnviar = () => {
         <h3>{{ t('contacto.formulario.titulo') }}</h3>
         
         <div class="field-group">
-            <label>
-                <Mail :size="16" /> {{ t('contacto.formulario.campoMail') }}
+            <label for="email">
+                <Mail :size="16" aria-hidden="true" /> 
+                {{ t('contacto.formulario.campoMail') }}
             </label>
-            <InputText v-model="form.email" :class="{ 'p-invalid': errores.email }" />
-            <small class="error-text">{{ errores.email }}</small>
+            <InputText 
+                id="email"
+                v-model="form.email" 
+                :class="{ 'p-invalid': errores.email }"
+                aria-describedby="error-email"
+            />
+            <small id="error-email" class="error-text" role="alert">{{ errores.email }}</small>
         </div>
 
         <div class="field-group">
-            <label>
-                <Phone :size="16" /> {{ t('contacto.formulario.campoTelefono') }}
+            <label for="telefono">
+                <Phone :size="16" aria-hidden="true" /> 
+                {{ t('contacto.formulario.campoTelefono') }}
             </label>
-            <InputText v-model="form.telefono" placeholder="600123456" :class="{ 'p-invalid': errores.telefono }" />
-            <small class="error-text">{{ errores.telefono }}</small>
+            <InputText 
+                id="telefono"
+                v-model="form.telefono" 
+                placeholder="600123456" 
+                type="tel" 
+                :class="{ 'p-invalid': errores.telefono }" 
+                aria-describedby="error-telefono"
+            />
+            <small id="error-telefono" class="error-text" role="alert">{{ errores.telefono }}</small>
         </div>
 
         <div class="field-group">
-            <label>
-                <MapPin :size="16" /> {{ t('contacto.formulario.campoCP') }}
+            <label for="cp">
+                <MapPin :size="16" aria-hidden="true" /> 
+                {{ t('contacto.formulario.campoCP') }}
             </label>
-            <InputText v-model="form.cp" placeholder="04001" :class="{ 'p-invalid': errores.cp }" />
-            <small class="error-text">{{ errores.cp }}</small>
+            <InputText 
+                id="cp"
+                v-model="form.cp" 
+                placeholder="04001" 
+                inputmode="numeric"
+                :class="{ 'p-invalid': errores.cp }" 
+                aria-describedby="error-cp"
+            />
+            <small id="error-cp" class="error-text" role="alert">{{ errores.cp }}</small>
         </div>
 
         <div class="field-group">
-            <label>
-                <MessageSquare :size="16" /> {{ t('contacto.formulario.campoConsulta') }}
+            <label for="mensaje">
+                <MessageSquare :size="16" aria-hidden="true" /> 
+                {{ t('contacto.formulario.campoConsulta') }}
             </label>
-            <Textarea v-model="form.mensaje" rows="3" :class="{ 'p-invalid': errores.mensaje }" class="w-full" />
-            <small class="error-text">{{ errores.mensaje }}</small>
+            <Textarea 
+                id="mensaje"
+                v-model="form.mensaje" 
+                rows="3" 
+                :class="{ 'p-invalid': errores.mensaje }" 
+                class="w-full" 
+                aria-describedby="error-mensaje"
+            />
+            <small id="error-mensaje" class="error-text" role="alert">{{ errores.mensaje }}</small>
         </div>
 
-        <Button :label="t('contacto.formulario.accion')" @click="validarYEnviar" class="w-full mt-2" />
+        <Button 
+            :aria-label="t('contacto.formulario.accion')" 
+            :label="t('contacto.formulario.accion')" 
+            @click="validarYEnviar" 
+            class="w-full mt-2" 
+        />
 
-        <div class="emergency-box">
+        <div class="emergency-box" role="region" aria-label="Información de urgencias">
             <div class="icon-pulse">
-                <Siren color="white" />
+                <Siren color="white" aria-hidden="true"/>
             </div>
             <div>
                 <strong>{{ t('contacto.urgencias.titulo') }}</strong>
-                <p>{{ t('contacto.urgencias.texto') }} <span class="phone-highlight">959 11 22 33</span></p>
+                <p>
+                    {{ t('contacto.urgencias.texto') }} 
+                    <a href="tel:959112233" class="phone-highlight">959 11 22 33</a>
+                </p>
             </div>
         </div>
     </div>
@@ -119,15 +157,16 @@ label {
 }
 
 .error-text {
-    color: #ef4444; /* Rojo tailwind */
-    min-height: 1.2em; /* Reserva espacio para que no salte el layout */
+    color: #ef4444;
+    min-height: 1.2em; 
     font-size: 0.8rem;
+    display: block; 
+    margin-top: 0.25rem;
 }
 
-/* Estilos Urgencias */
 .emergency-box {
     margin-top: 2rem;
-    background-color: #fee2e2; /* Rojo muy claro */
+    background-color: #fee2e2;
     border: 1px solid #ef4444;
     border-radius: 8px;
     padding: 1rem;
@@ -144,11 +183,18 @@ label {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0; 
 }
 
 .phone-highlight {
     font-weight: bold;
     font-size: 1.1em;
     display: block;
+    color: #991b1b;
+    text-decoration: none;
+}
+
+.phone-highlight:hover {
+    text-decoration: underline;
 }
 </style>

@@ -43,11 +43,11 @@ const registrarAnimal = (nuevo) => {
     <main class="container">
         <header class="header-flex mb-4">
             <div class="title">
-                <PawPrint :size="42" :stroke-width="2" class="logo-icon" />
+                <PawPrint :size="42" :stroke-width="2" class="logo-icon" aria-hidden="true"/>
                 <h1>{{ t('titulo') }}</h1>
             </div>
             <Button @click="toggleIdioma" class="btn-idioma">
-                <Globe :size="20" />
+                <Globe :size="20" aria-hidden="true"/>
                 <span>{{ t('btn_idioma') }}</span>
             </Button>
         </header>
@@ -59,36 +59,36 @@ const registrarAnimal = (nuevo) => {
                 <TabList>
                     <Tab value="0">
                         <div class="tab-content">
-                            <Dog :size="20" />
-                            <span>{{ t('tabs.pacientes') }}</span>
+                            <Dog :size="20" aria-hidden="true"/>
+                            <h3>{{ t('tabs.pacientes') }}</h3>
                         </div>
                     </Tab>
                     
                     <Tab value="1">
                         <div class="tab-content">
-                            <PlusCircle :size="18" />
-                            <span>{{ t('tabs.nuevo') }}</span>
+                            <PlusCircle :size="18" aria-hidden="true"/>
+                            <h3>{{ t('tabs.nuevo') }}</h3>
                         </div>
                     </Tab>
                     
                     <Tab value="2">
                         <div class="tab-content">
-                            <Heart :size="18" />
-                            <span>{{ t('tabs.servicios') }}</span>
+                            <Heart :size="18" aria-hidden="true"/>
+                            <h3>{{ t('tabs.servicios') }}</h3>
                         </div>
                     </Tab>
                     
                     <Tab value="3">
                         <div class="tab-content">
-                            <ChartBar :size="18" />
-                            <span>{{ t('tabs.stats') }}</span>
+                            <ChartBar :size="18" aria-hidden="true"/>
+                            <h3>{{ t('tabs.stats') }}</h3>
                         </div>
                     </Tab>
 
                     <Tab value="4">
                         <div class="tab-content">
-                            <Mail :size="18" />
-                            <span>{{ t('tabs.contacto') }}</span>
+                            <Mail :size="18" aria-hidden="true"/>
+                            <h3>{{ t('tabs.contacto') }}</h3>
                         </div>
                     </Tab>
                 </TabList>

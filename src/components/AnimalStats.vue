@@ -76,7 +76,6 @@ const chartOptions = ref({
 
 <style scoped>
 .stats-container {
-    background: white;
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -103,8 +102,6 @@ const chartOptions = ref({
     gap: 0.5rem;
     padding: 0.4rem 1rem;
     border-radius: 2rem;
-    border: 1px solid #ddd;
-    background: #f8fafc;
     font-weight: 600;
     font-size: 0.9rem;
 }
