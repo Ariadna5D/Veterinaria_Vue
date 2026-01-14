@@ -1,8 +1,12 @@
 @import "tailwindcss";
 @import "tailwindcss-primeui";
 
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
 }

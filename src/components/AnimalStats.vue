@@ -65,7 +65,7 @@ const chartOptions = ref({
             </div>
         </div>
 
-        <div class="h-[400px] w-full relative">
+        <div class="h-100 w-full relative">
             <Chart 
                 :key="tipoGrafico"
                 :type="tipoGrafico" 

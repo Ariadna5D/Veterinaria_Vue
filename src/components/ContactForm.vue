@@ -3,10 +3,15 @@ import { ref } from 'vue';
 import InputText from 'primevue/inputtext';
 import Textarea from 'primevue/textarea';
 import Button from 'primevue/button';
+import Toast from 'primevue/toast'; // Importamos el componente
+import { useToast } from 'primevue/usetoast'; // Importamos el servicio
 import { useI18n } from 'vue-i18n';
+import FormGroup from './common/FormGroup.vue'; // Importamos el nuevo componente
+
 import { Mail, Phone, MapPin, MessageSquare, Siren } from 'lucide-vue-next';
 
 const { t } = useI18n();
+const toast = useToast(); // Instanciamos el servicio de notificaciones
 
 const form = ref({ email: '', telefono: '', cp: '', mensaje: '' });
 const errores = ref({});
@@ -15,8 +20,8 @@ const validarYEnviar = () => {
     errores.value = {};
     let esValido = true;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^[0-9]{9}$/; 
-    const cpRegex = /^[0-9]{5}$/;    
+    const phoneRegex = /^[0-9]{9}$/;
+    const cpRegex = /^[0-9]{5}$/;
 
     if (!emailRegex.test(form.value.email)) { errores.value.email = t('contacto.errores.formato'); esValido = false; }
     if (!phoneRegex.test(form.value.telefono)) { errores.value.telefono = t('contacto.errores.telefono'); esValido = false; }
@@ -24,7 +29,13 @@ const validarYEnviar = () => {
     if (form.value.mensaje.length < 5) { errores.value.mensaje = t('contacto.errores.longitud'); esValido = false; }
 
     if (esValido) {
-        alert(t('contacto.formulario.exito'));
+        toast.add({
+            severity: 'success',
+            summary: t('contacto.formulario.exito'),
+            detail: t('contacto.formulario.campoMail') + ': ' + form.value.email,
+            life: 4000
+        });
+
         form.value = { email: '', telefono: '', cp: '', mensaje: '' };
     }
 };
@@ -32,51 +43,42 @@ const validarYEnviar = () => {
 
 <template>
     <div class="w-full">
+        <Toast />
+
         <form @submit.prevent="validarYEnviar" class="flex flex-col gap-6">
-            
+
             <div class="grid md:grid-cols-2 gap-6">
-                <div class="flex flex-col gap-2">
-                    <label for="cp" class="flex items-center gap-2 font-semibold">
-                        <MapPin :size="18" class="text-primary"/> CP
-                    </label>
-                    <InputText id="cp" v-model="form.cp" :invalid="!!errores.cp" />
-                    <small class="text-red-500 block min-h-[1rem]">{{ errores.cp }}</small>
-                </div>
+                <FormGroup :label="'CP'" :error="errores.cp" id="cp" :icon="MapPin">
+                    <InputText id="cp" v-model="form.cp" :invalid="!!errores.cp" aria-describedby="cp-error" />
+                </FormGroup>
 
-                <div class="flex flex-col gap-2">
-                    <label for="telefono" class="flex items-center gap-2 font-semibold">
-                        <Phone :size="18" class="text-primary"/> {{ t('contacto.formulario.campoTelefono') }}
-                    </label>
-                    <InputText id="telefono" v-model="form.telefono" type="tel" :invalid="!!errores.telefono" />
-                    <small class="text-red-500 block min-h-[1rem]">{{ errores.telefono }}</small>
-                </div>
+                <FormGroup :label="t('contacto.formulario.campoTelefono')" :error="errores.telefono" id="telefono"
+                    :icon="Phone">
+                    <InputText id="telefono" v-model="form.telefono" type="tel" :invalid="!!errores.telefono"
+                        aria-describedby="tel-error" />
+                </FormGroup>
             </div>
 
-            <div class="flex flex-col gap-2">
-                <label for="email" class="flex items-center gap-2 font-semibold">
-                    <Mail :size="18" class="text-primary"/> {{ t('contacto.formulario.campoMail') }}
-                </label>
-                <InputText id="email" v-model="form.email" :invalid="!!errores.email" />
-                <small class="text-red-500 block min-h-[1rem]">{{ errores.email }}</small>
-            </div>
+            <FormGroup :label="t('contacto.formulario.campoMail')" :error="errores.email" id="email" :icon="Mail">
+                <InputText id="email" v-model="form.email" :invalid="!!errores.email" aria-describedby="email-error" />
+            </FormGroup>
 
-            <div class="flex flex-col gap-2">
-                <label for="mensaje" class="flex items-center gap-2 font-semibold">
-                    <MessageSquare :size="18" class="text-primary"/> {{ t('contacto.formulario.campoConsulta') }}
-                </label>
-                <Textarea id="mensaje" v-model="form.mensaje" :invalid="!!errores.mensaje" rows="3" class="w-full" />
-                <small class="text-red-500 block min-h-[1rem]">{{ errores.mensaje }}</small>
-            </div>
+            <FormGroup :label="t('contacto.formulario.campoConsulta')" :error="errores.mensaje" id="mensaje"
+                :icon="MessageSquare">
+                <Textarea id="mensaje" v-model="form.mensaje" :invalid="!!errores.mensaje" rows="3" class="w-full"
+                    aria-describedby="mensaje-error" />
+            </FormGroup>
 
-            <Button type="submit" :label="t('contacto.formulario.accion')" class="w-full" />
+            <Button type="submit" :label="t('contacto.formulario.accion')" class="w-full font-bold" />
 
-            <div class="mt-4 p-4 flex items-center gap-4 border-l-4 border-red-500 rounded-r-lg bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400">
+            <div
+                class="mt-4 p-4 flex items-center gap-4 border-l-4 border-red-500 rounded-r-lg bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400">
                 <div class="p-2 bg-red-500 rounded-full animate-pulse shrink-0">
-                    <Siren color="white" :size="24"/>
+                    <Siren color="white" :size="24" />
                 </div>
                 <div class="text-sm">
                     <strong class="block text-base">{{ t('contacto.urgencias.titulo') }}</strong>
-                    <p>{{ t('contacto.urgencias.texto') }} 
+                    <p>{{ t('contacto.urgencias.texto') }}
                         <a href="tel:959112233" class="font-bold hover:underline">959 11 22 33</a>
                     </p>
                 </div>

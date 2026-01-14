@@ -14,6 +14,7 @@ const messages = {
     },
     pacientes:{
       titulo: 'Pacientes',
+      buscar: 'Buscar...',
       campos:{
         nombre: 'Paciente',
         especie: 'Especie',
@@ -35,7 +36,7 @@ const messages = {
       },
       formulario: {
         accion: 'Registrar',
-        exito: 'Animal guardado con éxito',
+        exito: 'Paciente guardado con éxito',
         seleccionar: 'Selecciona',
         campos: {
           tNombreMascota: 'Nombre Mascota',
@@ -50,19 +51,19 @@ const messages = {
       errores: {
         formato: 'Formato inválido (ej: a@b.com)',
         longitud: 'Mínimo 5 carácteres',
-        telefono: 'Debe tener 9 dígitos numéricos', // NUEVO
-        cp: 'Código postal inválido (5 dígitos)'      // NUEVO
+        telefono: 'Debe tener 9 dígitos numéricos', 
+        cp: 'Código postal inválido (5 dígitos)'      
       },
       formulario:{
         exito: 'Mensaje enviado',
         titulo: 'Contacto Rápido',
         campoMail: 'Tu Email',
-        campoTelefono: 'Teléfono',      // NUEVO
-        campoCP: 'Código Postal',       // NUEVO
+        campoTelefono: 'Teléfono',      
+        campoCP: 'Código Postal',       
         campoConsulta: 'Consulta',
         accion: 'Enviar Consulta'
       },
-      urgencias: {                      // NUEVO
+      urgencias: {                      
         titulo: '¿Emergencia Veterinaria?',
         texto: 'Llámanos inmediatamente al'
       }
@@ -93,6 +94,7 @@ const messages = {
     },
     pacientes:{
       titulo: 'Patients',
+      buscar: 'Search...',
       campos:{
         nombre: 'Patient',
         especie: 'Species', 
@@ -114,7 +116,7 @@ const messages = {
       },
       formulario: {
         accion: 'Register',
-        exito: 'Animal registered successfully',
+        exito: 'Patient registered successfully',
         seleccionar: 'Select',
         campos: {
           tNombreMascota: 'Pet Name',
@@ -129,19 +131,19 @@ const messages = {
       errores: {
         formato: 'Invalid format (ex: a@b.com)',
         longitud: 'Must be 5 characters min',
-        telefono: 'Must be 9 numeric digits',    // NUEVO
-        cp: 'Invalid postal code (5 digits)'     // NUEVO
+        telefono: 'Must be 9 numeric digits',    
+        cp: 'Invalid postal code (5 digits)'     
       },
       formulario:{
         exito: 'Message Sent',
         titulo: 'Quick Contact',
         campoMail: 'Your Email',
-        campoTelefono: 'Phone',         // NUEVO
-        campoCP: 'Postal Code',         // NUEVO
+        campoTelefono: 'Phone',         
+        campoCP: 'Postal Code',         
         campoConsulta: 'Enquiry',
         accion: 'Send Enquiry'
       },
-      urgencias: {                      // NUEVO
+      urgencias: {                      
         titulo: 'Veterinary Emergency?',
         texto: 'Call us immediately at'
       }

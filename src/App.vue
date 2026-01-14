@@ -8,12 +8,14 @@ import Tab from 'primevue/tab';
 import TabPanels from 'primevue/tabpanels';
 import TabPanel from 'primevue/tabpanel';
 import Button from 'primevue/button';
+import ThemeToggle from './components/common/ThemeToggle.vue';
 
 import AnimalList from './components/AnimalList.vue';
 import AnimalForm from './components/AnimalForm.vue';
 import ContactForm from './components/ContactForm.vue';
 import Adoption from './components/Adoption.vue';
 import AnimalStats from './components/AnimalStats.vue';
+
 
 // estos son los iconos
 import { PawPrint, PlusCircle, Heart, ChartBar, Mail, Dog, Globe } from 'lucide-vue-next';
@@ -26,11 +28,16 @@ const toggleIdioma = () => {
 }
 
 const animales = ref([]);
+const estadisticas = ref([]);
 
 onMounted(async () => {
     try {
-        const res = await fetch(`${import.meta.env.BASE_URL}animales.json`);
+        const res = await fetch(`${import.meta.env.BASE_URL}pacientes.json`);
         if (res.ok) animales.value = await res.json();
+    } catch (e) { console.error(e); }
+    try {
+        const res = await fetch(`${import.meta.env.BASE_URL}pacientesPeninsula.json`);
+        if (res.ok) estadisticas.value = await res.json();
     } catch (e) { console.error(e); }
 });
 
@@ -41,16 +48,21 @@ const registrarAnimal = (nuevo) => {
 
 <template>
     <div class="min-h-screen flex flex-col bg-surface-100 dark:bg-surface-950 text-color transition-colors duration-300">
+        
         <div class="container mx-auto p-4">
             <header class="flex justify-between items-center mb-6">
                 <div class="flex items-center gap-4 text-primary">
                     <PawPrint :size="42" :stroke-width="2" class="logo-icon" aria-hidden="true"/>
                     <h1 class="m-0 font-bold text-3xl">{{ t('titulo') }}</h1>
                 </div>
-                <Button @click="toggleIdioma" class="flex items-center gap-2">
-                    <Globe :size="20" aria-hidden="true"/>
-                    <span>{{ t('btn_idioma') }}</span>
-                </Button>
+                <div class="flex items-center gap-2">
+                    
+                    <ThemeToggle /> 
+                    <Button @click="toggleIdioma" class="">
+                        <Globe :size="20" aria-hidden="true" :stroke-width="2"/>
+                        <span>{{ t('btn_idioma') }}</span>
+                    </Button>
+                </div>
             </header>
 
             <main class="border border-surface shadow-lg rounded-xl overflow-hidden">
@@ -112,7 +124,7 @@ const registrarAnimal = (nuevo) => {
 
                         <TabPanel value="3">
                             <h3 class="text-2xl font-bold">{{ t('tabs.stats') }}</h3>
-                            <AnimalStats :animales="animales" />
+                            <AnimalStats :animales="estadisticas" />
                         </TabPanel>
 
                         <TabPanel value="4">

@@ -7,14 +7,15 @@ import Aura from '@primevue/themes/aura';
 import i18n from './i18n'; 
 
 import './assets/main.css';
-
+import ToastService from 'primevue/toastservice';
 const app = createApp(App);
 
+app.use(ToastService);
 app.use(PrimeVue, {
     theme: {
         preset: Aura,
         options: {
-            darkModeSelector: 'system',
+            darkModeSelector: '.my-app-dark',
             cssLayer: {
                 name: 'primevue',
                 order: 'theme, base, primevue'
