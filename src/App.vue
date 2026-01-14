@@ -40,113 +40,88 @@ const registrarAnimal = (nuevo) => {
 </script>
 
 <template>
-    <main class="container">
-        <header class="header-flex mb-4">
-            <div class="title">
-                <PawPrint :size="42" :stroke-width="2" class="logo-icon" aria-hidden="true"/>
-                <h1>{{ t('titulo') }}</h1>
-            </div>
-            <Button @click="toggleIdioma" class="btn-idioma">
-                <Globe :size="20" aria-hidden="true"/>
-                <span>{{ t('btn_idioma') }}</span>
-            </Button>
-        </header>
+    <div class="min-h-screen flex flex-col bg-surface-100 dark:bg-surface-950 text-color transition-colors duration-300">
+        <div class="container mx-auto p-4">
+            <header class="flex justify-between items-center mb-6">
+                <div class="flex items-center gap-4 text-primary">
+                    <PawPrint :size="42" :stroke-width="2" class="logo-icon" aria-hidden="true"/>
+                    <h1 class="m-0 font-bold text-3xl">{{ t('titulo') }}</h1>
+                </div>
+                <Button @click="toggleIdioma" class="flex items-center gap-2">
+                    <Globe :size="20" aria-hidden="true"/>
+                    <span>{{ t('btn_idioma') }}</span>
+                </Button>
+            </header>
 
-        <!-- Esta es la ventana principal de la web -->
-        <div class="card">
-            <Tabs value="0">
-                <!-- Dependiendo del tab seleccionado, carga una vista u otra sin recargar -->
-                <TabList>
-                    <Tab value="0">
-                        <div class="tab-content">
-                            <Dog :size="20" aria-hidden="true"/>
-                            <h3>{{ t('tabs.pacientes') }}</h3>
-                        </div>
-                    </Tab>
-                    
-                    <Tab value="1">
-                        <div class="tab-content">
-                            <PlusCircle :size="18" aria-hidden="true"/>
-                            <h3>{{ t('tabs.nuevo') }}</h3>
-                        </div>
-                    </Tab>
-                    
-                    <Tab value="2">
-                        <div class="tab-content">
-                            <Heart :size="18" aria-hidden="true"/>
-                            <h3>{{ t('tabs.servicios') }}</h3>
-                        </div>
-                    </Tab>
-                    
-                    <Tab value="3">
-                        <div class="tab-content">
-                            <ChartBar :size="18" aria-hidden="true"/>
-                            <h3>{{ t('tabs.stats') }}</h3>
-                        </div>
-                    </Tab>
+            <main class="border border-surface shadow-lg rounded-xl overflow-hidden">
+                <Tabs value="0">
+                    <TabList>
+                        <Tab value="0">
+                            <div class="flex items-center gap-2">
+                                <Dog :size="20" aria-hidden="true"/>
+                                <h3 class="text-lg font-semibold">{{ t('tabs.pacientes') }}</h3>
+                            </div>
+                        </Tab>
+                        
+                        <Tab value="1">
+                            <div class="flex items-center gap-2">
+                                <PlusCircle :size="18" aria-hidden="true"/>
+                                <h3 class="text-lg font-semibold">{{ t('tabs.nuevo') }}</h3>
+                            </div>
+                        </Tab>
+                        
+                        <Tab value="2">
+                            <div class="flex items-center gap-2">
+                                <Heart :size="18" aria-hidden="true"/>
+                                <h3 class="text-lg font-semibold">{{ t('tabs.servicios') }}</h3>
+                            </div>
+                        </Tab>
+                        
+                        <Tab value="3">
+                            <div class="flex items-center gap-2">
+                                <ChartBar :size="18" aria-hidden="true"/>
+                                <h3 class="text-lg font-semibold">{{ t('tabs.stats') }}</h3>
+                            </div>
+                        </Tab>
 
-                    <Tab value="4">
-                        <div class="tab-content">
-                            <Mail :size="18" aria-hidden="true"/>
-                            <h3>{{ t('tabs.contacto') }}</h3>
-                        </div>
-                    </Tab>
-                </TabList>
+                        <Tab value="4">
+                            <div class="flex items-center gap-2">
+                                <Mail :size="18" aria-hidden="true"/>
+                                <h3 class="text-lg font-semibold">{{ t('tabs.contacto') }}</h3>
+                            </div>
+                        </Tab>
+                    </TabList>
 
-                <TabPanels>
-                    <!-- Aquí están los casos, es decir, todos los tabs disponibles -->
-                    <TabPanel value="0">
-                        <AnimalList :animales="animales" />
-                    </TabPanel>
+                    <TabPanels class="p-6">
+                        <TabPanel value="0">
+                            <h3 class="text-2xl font-bold">{{ t('tabs.pacientes') }}</h3>
+                            <AnimalList :animales="animales" />
+                        </TabPanel>
 
-                    <TabPanel value="1">
-                        <div>
-                            <div>
-                                <h3>{{ t('ingreso.titulo') }}</h3>
+                        <TabPanel value="1">
+                            <div class="flex flex-col gap-4">
+                                <h3 class="text-2xl font-bold">{{ t('tabs.nuevo') }}</h3>
                                 <AnimalForm @alta-animal="registrarAnimal" />
                             </div>
-                        </div>
-                    </TabPanel>
+                        </TabPanel>
 
-                    <TabPanel value="2">
-                        <Adoption />
-                    </TabPanel>
+                        <TabPanel value="2">
+                            <h3 class="text-2xl font-bold">{{ t('tabs.servicios') }}</h3>
+                            <Adoption />
+                        </TabPanel>
 
-                    <TabPanel value="3">
-                        <AnimalStats :animales="animales" />
-                    </TabPanel>
+                        <TabPanel value="3">
+                            <h3 class="text-2xl font-bold">{{ t('tabs.stats') }}</h3>
+                            <AnimalStats :animales="animales" />
+                        </TabPanel>
 
-                    <TabPanel value="4">
-                        <ContactForm />
-                    </TabPanel>
-                </TabPanels>
-            </Tabs>
+                        <TabPanel value="4">
+                            <h3 class="text-2xl font-bold">{{ t('tabs.contacto') }}</h3>
+                            <ContactForm />
+                        </TabPanel>
+                    </TabPanels>
+                </Tabs>
+            </main>
         </div>
-    </main>
+    </div>
 </template>
-
-<style>
-.header-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.title {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 15px;
-    color: var(--p-primary-color);
-}
-
-.title h1 {
-    margin: 0;
-    font-weight: bold;
-}
-.tab-content {
-    display: flex;
-    align-items: center;
-    gap: 0.2rem;
-}
-</style>

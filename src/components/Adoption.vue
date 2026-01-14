@@ -31,62 +31,33 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="grid-adopciones">
-        <div v-for="animal in adopciones" :key="animal.id">
-            <Card class="h-full animal-card">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-4">
+        <div v-for="animal in adopciones" :key="animal.id" class="h-full">
+            <Card class="h-full overflow-hidden shadow-md focus:outline-2 hover:outline-3 outline-primary  ">
                 <template #header>
-                    <img :src="animal.imagen" :alt="'Foto de ' + animal.nombre" class="animal-img" />
+                    <img :src="animal.imagen" :alt="'Foto de ' + animal.nombre" class="w-full h-64 object-cover" />
                 </template>
 
                 <template #title>
-                    {{ animal.nombre }}
+                    <span class="font-bold text-xl text-primary hover:text-primary-200">{{ animal.nombre }}</span>
                 </template>
 
                 <template #subtitle>
-                    {{ animal.edad }}
+                    <span class="text-surface-600 font-medium">{{ animal.edad }}</span>
                 </template>
 
                 <template #content>
-                    <p>Personalidad:</p>
-                    <div class="flex-wrap">
-                        <Badge v-for="rasgo in animal.personalidad" :key="rasgo" :value="rasgo" class="mr-2 mb-2"
-                            severity="info" />
+                    <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-surface-500">Personalidad:</p>
+                    <div class="flex flex-wrap gap-2">
+                        <Badge 
+                            v-for="rasgo in animal.personalidad" 
+                            :key="rasgo" 
+                            :value="rasgo" 
+                            severity="info" 
+                        />
                     </div>
                 </template>
             </Card>
         </div>
     </div>
 </template>
-
-<style scoped>
-.grid-adopciones {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    padding: 1rem;
-}
-
-.animal-img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 0.2rem 0.2rem 0 0;
-}
-
-.animal-card {
-    transition: transform 0.2s;
-}
-
-.flex-wrap {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.mr-2 {
-    margin-right: 0.5rem;
-}
-
-.mb-2 {
-    margin-bottom: 0.5rem;
-}
-</style>

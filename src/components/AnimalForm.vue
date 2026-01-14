@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import Select from 'primevue/select';
 import Textarea from 'primevue/textarea';
 import InputText from 'primevue/inputtext';
+import Button from 'primevue/button'; // Añadimos el componente Button para consistencia
 import { computed } from 'vue';
 
 const { t } = useI18n();
@@ -48,83 +49,45 @@ const alEnviar = handleSubmit((values) => {
 </script>
 
 <template>
-    <div class="form-wrapper">
-        <form @submit="alEnviar" class="flex-col" style="gap: 1.5rem;">
-
-            <div class="grid-2">
-                <div class="flex-col">
-                    <label for="nombre">{{ t('ingreso.formulario.campos.tNombreMascota') }}</label>
-                    <InputText 
-                        id="nombre"
-                        v-model="nombre" 
-                        @blur="blurNombre" 
-                        :class="{ 'p-invalid': errorNombre }" 
-                        aria-describedby="error-nombre"
-                    />
-                    <small id="error-nombre" class="error-msg" role="alert">{{ errorNombre }}</small>
+    <div class="w-full">
+        <form @submit="alEnviar" class="flex flex-col gap-6">
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="flex flex-col gap-2">
+                    <label for="nombre" class="font-semibold">{{ t('ingreso.formulario.campos.tNombreMascota') }}</label>
+                    <InputText id="nombre" v-model="nombre" @blur="blurNombre" :invalid="!!errorNombre" />
+                    <small class="text-red-500">{{ errorNombre }}</small>
                 </div>
 
-                <div class="flex-col">
-                    <label for="especie">{{ t('ingreso.formulario.campos.tEspecie') }}</label>
-                    <Select 
-                        inputId="especie"
-                        :placeholder="t('ingreso.formulario.seleccionar')" 
-                        v-model="especie" 
-                        :options="especies"
-                        optionLabel="label" 
-                        optionValue="value" 
-                        class="w-full" 
-                        aria-describedby="error-especie"
-                    />
-                    <small id="error-especie" class="error-msg" role="alert">{{ errorEspecie }}</small>
+                <div class="flex flex-col gap-2">
+                    <label for="especie" class="font-semibold">{{ t('ingreso.formulario.campos.tEspecie') }}</label>
+                    <Select inputId="especie" :placeholder="t('ingreso.formulario.seleccionar')" v-model="especie"
+                        :options="especies" optionLabel="label" optionValue="value" class="w-full"
+                        :invalid="!!errorEspecie" />
+                    <small class="text-red-500">{{ errorEspecie }}</small>
                 </div>
             </div>
 
-            <div class="grid-2">
-                <div class="flex-col">
-                    <label for="dueno">{{ t('ingreso.formulario.campos.tDueno') }}</label>
-                    <InputText 
-                        id="dueno"
-                        v-model="dueno" 
-                        @blur="blurDueno" 
-                        :class="{ 'p-invalid': errorDueno }" 
-                        aria-describedby="error-dueno"
-                    />
-                    <small id="error-dueno" class="error-msg" role="alert">{{ errorDueno }}</small>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="flex flex-col gap-2">
+                    <label for="dueno" class="font-semibold">{{ t('ingreso.formulario.campos.tDueno') }}</label>
+                    <InputText id="dueno" v-model="dueno" @blur="blurDueno" :invalid="!!errorDueno" />
+                    <small class="text-red-500">{{ errorDueno }}</small>
                 </div>
 
-                <div class="flex-col">
-                    <label for="telefono">{{ t('ingreso.formulario.campos.tTelefono') }}</label>
-                    <InputText 
-                        id="telefono"
-                        v-model="telefono" 
-                        @blur="blurTelefono" 
-                        type="tel"
-                        :class="{ 'p-invalid': errorTelefono }" 
-                        aria-describedby="error-telefono"
-                    />
-                    <small id="error-telefono" class="error-msg" role="alert">{{ errorTelefono }}</small>
+                <div class="flex flex-col gap-2">
+                    <label for="telefono" class="font-semibold">{{ t('ingreso.formulario.campos.tTelefono') }}</label>
+                    <InputText id="telefono" v-model="telefono" @blur="blurTelefono" type="tel"
+                        :invalid="!!errorTelefono" />
+                    <small class="text-red-500">{{ errorTelefono }}</small>
                 </div>
             </div>
 
-            <div class="flex-col">
-                <label for="notas">{{ t('ingreso.formulario.campos.tNotas') }}</label>
-                <Textarea 
-                    id="notas"
-                    v-model="notas" 
-                    rows="3" 
-                    class="w-full" 
-                />
+            <div class="flex flex-col gap-2">
+                <label for="notas" class="font-semibold">{{ t('ingreso.formulario.campos.tNotas') }}</label>
+                <Textarea id="notas" v-model="notas" rows="3" class="w-full" />
             </div>
 
-            <button type="submit" class="btn-primary w-full" :aria-label="t('ingreso.formulario.accion')">{{ t('ingreso.formulario.accion') }}</button>
+            <Button type="submit" :label="t('ingreso.formulario.accion')" class="w-full" />
         </form>
     </div>
 </template>
-
-<style scoped>
-.form-wrapper {
-    max-width: 800px;
-    margin: 0 auto;
-}
-</style>

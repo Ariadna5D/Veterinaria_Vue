@@ -49,75 +49,30 @@ const chartOptions = ref({
 </script>
 
 <template>
-    <div class="card p-4 stats-container">
-        <h3 class="text-center">{{ t('stats.titulo') }}</h3>
+    <div class="flex flex-col gap-6 w-full">
+        <h3 class="text-2xl font-bold text-center">{{ t('stats.titulo') }}</h3>
 
-        <div class="controls">
+        <div class="flex justify-center">
             <SelectButton v-model="tipoGrafico" :options="opciones" :aria-label="t('stats.grafico')" />
         </div>
 
-        <div class="legend">
-            <div v-for="(item, key) in config" :key="key" class="legend-item" :style="{ borderColor: item.color }">
-                <component :is="item.icon" :size="18" :color="item.color" />
-                <span :style="{ color: item.color }">{{ t(item.label) }}</span>
+        <div class="flex flex-wrap justify-center gap-3">
+            <div v-for="(item, key) in config" :key="key" 
+                class="flex items-center gap-2 px-4 py-1.5 border rounded-full font-semibold text-sm"
+                :style="{ borderColor: item.color, color: item.color }">
+                <component :is="item.icon" :size="18" />
+                <span>{{ t(item.label) }}</span>
             </div>
         </div>
 
-        <div class="chart-wrapper">
+        <div class="h-[400px] w-full relative">
             <Chart 
                 :key="tipoGrafico"
                 :type="tipoGrafico" 
                 :data="chartData" 
                 :options="chartOptions" 
+                class="h-full w-full"
             />
         </div>
     </div>
 </template>
-
-<style scoped>
-.stats-container {
-    border-radius: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem; 
-}
-
-.text-center { text-align: center; margin: 0; }
-
-.controls {
-    display: flex;
-    justify-content: center;
-}
-
-.legend {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.legend-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.4rem 1rem;
-    border-radius: 2rem;
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
-.chart-wrapper {
-    height: 400px; 
-    width: 100%;
-    position: relative;
-    flex-shrink: 0; 
-}
-
-.chart-wrapper :deep(canvas) {
-    width: 100% !important;
-    height: 100% !important;
-    
-    max-height: 400px;
-    object-fit: contain;
-}
-</style>
