@@ -99,6 +99,7 @@ const alEnviar = handleSubmit((values) => {
             <Textarea id="notas" v-model="notas" rows="3" class="w-full" />
         </FormGroup>
 
-        <Button type="submit" :label="t('ingreso.formulario.accion')" class="w-full" />
+        <Button type="submit" :label="t('ingreso.formulario.accion')"
+            class="w-full !text-xl !font-bold uppercase tracking-widest" />
     </form>
 </template>

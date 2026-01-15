@@ -69,7 +69,8 @@ const validarYEnviar = () => {
                     aria-describedby="mensaje-error" />
             </FormGroup>
 
-            <Button type="submit" :label="t('contacto.formulario.accion')" class="w-full font-bold" />
+            <Button type="submit" :label="t('contacto.formulario.accion')"
+                class="w-full !text-xl !font-bold uppercase tracking-widest" />
 
             <div
                 class="mt-4 p-4 flex items-center gap-4 border-l-4 border-red-500 rounded-r-lg bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400">
@@ -79,7 +80,7 @@ const validarYEnviar = () => {
                 <div class="text-sm">
                     <strong class="block text-base">{{ t('contacto.urgencias.titulo') }}</strong>
                     <p>{{ t('contacto.urgencias.texto') }}
-                        <a href="tel:959112233" class="font-bold hover:underline">959 11 22 33</a>
+                        <span class="font-bold hover:underline">959 11 22 33</span>
                     </p>
                 </div>
             </div>

@@ -9,8 +9,8 @@ defineProps({
 
 <template>
     <div class="flex flex-col gap-2">
-        <label :for="id" class="flex items-center gap-2 font-semibold text-sm">
-            <component :is="icon" v-if="icon" :size="16" class="text-primary" />
+        <label :for="id" class="flex items-center gap-2 font-semibold text-lg">
+            <component :is="icon" v-if="icon" :size="24" class="text-primary" />
             {{ label }}
         </label>
         

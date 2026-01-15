@@ -4,6 +4,9 @@ import Chart from 'primevue/chart';
 import SelectButton from 'primevue/selectbutton';
 import { useI18n } from "vue-i18n";
 
+// Importamos el nuevo componente
+import CustomLabel from './common/CustomLabel.vue';
+
 import { Dog, Cat, Turtle, Bird, PawPrint } from 'lucide-vue-next';
 
 const { t } = useI18n();
@@ -13,18 +16,16 @@ const tipoGrafico = ref('bar');
 const opciones = ref(['bar', 'pie', 'doughnut']);
 
 const config = {
-    perros:   { match: 'Perro',  icon: Dog,      color: '#f59e0b', label: 'especies.perro' },
-    gatos:    { match: 'Gato',   icon: Cat,      color: '#10b981', label: 'especies.gato' },
-    reptiles: { match: 'Reptil', icon: Turtle,   color: '#6366f1', label: 'especies.reptil' },
-    aves:     { match: 'Ave',    icon: Bird,     color: '#ec4899', label: 'especies.ave' },
-    otros:    { match: 'Otro',   icon: PawPrint, color: '#94a3b8', label: 'especies.otro' }
+    perros: { match: 'Perro', icon: Dog, color: '#f59e0b', label: 'especies.perro' },
+    gatos: { match: 'Gato', icon: Cat, color: '#10b981', label: 'especies.gato' },
+    reptiles: { match: 'Reptil', icon: Turtle, color: '#6366f1', label: 'especies.reptil' },
+    aves: { match: 'Ave', icon: Bird, color: '#ec4899', label: 'especies.ave' },
+    otros: { match: 'Otro', icon: PawPrint, color: '#94a3b8', label: 'especies.otro' }
 };
 
 const chartData = computed(() => {
-    // Generamos los datos dinámicamente basados en la config
     const values = Object.values(config);
-    
-    const counts = values.map(c => 
+    const counts = values.map(c =>
         props.animales.filter(a => a.especie === c.match).length
     );
 
@@ -39,13 +40,28 @@ const chartData = computed(() => {
     };
 });
 
-const chartOptions = ref({
+const chartOptions = computed(() => ({
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
         legend: { display: false }
+    },
+    scales: {
+        y: {
+            ticks: {
+                color: document.documentElement.classList.contains('dark') ? '#94a3b8' : '#64748b'
+            },
+            grid: {
+                color: document.documentElement.classList.contains('dark') ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'
+            }
+        },
+        x: {
+            ticks: {
+                color: document.documentElement.classList.contains('dark') ? '#94a3b8' : '#64748b'
+            }
+        }
     }
-});
+}));
 </script>
 
 <template>
@@ -57,22 +73,13 @@ const chartOptions = ref({
         </div>
 
         <div class="flex flex-wrap justify-center gap-3">
-            <div v-for="(item, key) in config" :key="key" 
-                class="flex items-center gap-2 px-4 py-1.5 border rounded-full font-semibold text-sm"
-                :style="{ borderColor: item.color, color: item.color }">
-                <component :is="item.icon" :size="18" />
-                <span>{{ t(item.label) }}</span>
-            </div>
+            <CustomLabel v-for="(item, key) in config" :key="key" :icon="item.icon" :label="t(item.label)"
+                :color="item.color" />
         </div>
 
         <div class="h-100 w-full relative">
-            <Chart 
-                :key="tipoGrafico"
-                :type="tipoGrafico" 
-                :data="chartData" 
-                :options="chartOptions" 
-                class="h-full w-full"
-            />
+            <Chart :key="tipoGrafico" :type="tipoGrafico" :data="chartData" :options="chartOptions"
+                class="h-full w-full !text-base !uppercase" />
         </div>
     </div>
 </template>

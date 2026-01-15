@@ -7,9 +7,10 @@ const esOscuro = ref(false);
 
 const toggleDarkMode = () => {
     const element = document.querySelector('html');
-    element.classList.toggle('my-app-dark'); 
-    
-    const isDark = element.classList.contains('my-app-dark');
+    element.classList.toggle('dark');
+
+    const isDark = element.classList.contains('dark');
+    esOscuro.value = isDark;
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
 };
 
@@ -19,14 +20,15 @@ onMounted(() => {
 
     if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
         esOscuro.value = true;
-        document.querySelector('html').classList.add('my-app-dark');
+        document.querySelector('html').classList.add('dark');
     }
 });
 </script>
 
 <template>
-    <Button @click="toggleDarkMode" severity="secondary" variant="text" rounded>
-        <Sun v-if="esOscuro" :size="20" />
-        <Moon v-else :size="20" />
+    <Button @click="toggleDarkMode" :severity="esOscuro ? 'warn' : 'info'" variant="text" rounded
+        class="hover:!bg-blue-400/20 !bg-transparent dark:hover:!bg-yellow-400/20">
+        <Sun v-if="esOscuro" :size="24" />
+        <Moon v-else :size="24" />
     </Button>
 </template>

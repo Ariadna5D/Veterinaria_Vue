@@ -47,19 +47,20 @@ const registrarAnimal = (nuevo) => {
 </script>
 
 <template>
-    <div class="min-h-screen flex flex-col bg-surface-100 dark:bg-surface-950 text-color transition-colors duration-300">
-        
+    <div
+        class="min-h-screen flex flex-col bg-surface-100 dark:bg-surface-950 text-color transition-colors duration-300">
+
         <div class="container mx-auto p-4">
             <header class="flex justify-between items-center mb-6">
                 <div class="flex items-center gap-4 text-primary">
-                    <PawPrint :size="42" :stroke-width="2" class="logo-icon" aria-hidden="true"/>
+                    <PawPrint :size="42" :stroke-width="2" class="logo-icon" aria-hidden="true" />
                     <h1 class="m-0 font-bold text-3xl">{{ t('titulo') }}</h1>
                 </div>
                 <div class="flex items-center gap-2">
-                    
-                    <ThemeToggle /> 
+
+                    <ThemeToggle />
                     <Button @click="toggleIdioma" class="">
-                        <Globe :size="20" aria-hidden="true" :stroke-width="2"/>
+                        <Globe :size="20" aria-hidden="true" :stroke-width="2" />
                         <span>{{ t('btn_idioma') }}</span>
                     </Button>
                 </div>
@@ -70,35 +71,35 @@ const registrarAnimal = (nuevo) => {
                     <TabList>
                         <Tab value="0">
                             <div class="flex items-center gap-2">
-                                <Dog :size="20" aria-hidden="true"/>
+                                <Dog :size="20" aria-hidden="true" />
                                 <h3 class="text-lg font-semibold">{{ t('tabs.pacientes') }}</h3>
                             </div>
                         </Tab>
-                        
+
                         <Tab value="1">
                             <div class="flex items-center gap-2">
-                                <PlusCircle :size="18" aria-hidden="true"/>
+                                <PlusCircle :size="18" aria-hidden="true" />
                                 <h3 class="text-lg font-semibold">{{ t('tabs.nuevo') }}</h3>
                             </div>
                         </Tab>
-                        
+
                         <Tab value="2">
                             <div class="flex items-center gap-2">
-                                <Heart :size="18" aria-hidden="true"/>
+                                <Heart :size="18" aria-hidden="true" />
                                 <h3 class="text-lg font-semibold">{{ t('tabs.servicios') }}</h3>
                             </div>
                         </Tab>
-                        
+
                         <Tab value="3">
                             <div class="flex items-center gap-2">
-                                <ChartBar :size="18" aria-hidden="true"/>
+                                <ChartBar :size="18" aria-hidden="true" />
                                 <h3 class="text-lg font-semibold">{{ t('tabs.stats') }}</h3>
                             </div>
                         </Tab>
 
                         <Tab value="4">
                             <div class="flex items-center gap-2">
-                                <Mail :size="18" aria-hidden="true"/>
+                                <Mail :size="18" aria-hidden="true" />
                                 <h3 class="text-lg font-semibold">{{ t('tabs.contacto') }}</h3>
                             </div>
                         </Tab>
