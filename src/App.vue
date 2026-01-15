@@ -23,27 +23,26 @@ import { PawPrint, PlusCircle, Heart, ChartBar, Mail, Dog, Globe } from 'lucide-
 // esto es para usar el cambio de idioma
 const { t, locale } = useI18n();
 
+// para alternar el idioma
 const toggleIdioma = () => {
     locale.value = locale.value === 'es' ? 'en' : 'es';
 }
-
+// referencia a los json
 const animales = ref([]);
 const estadisticas = ref([]);
 
+// esperar a cargar toda la página
 onMounted(async () => {
     try {
         const res = await fetch(`${import.meta.env.BASE_URL}pacientes.json`);
         if (res.ok) animales.value = await res.json();
     } catch (e) { console.error(e); }
     try {
-        const res = await fetch(`${import.meta.env.BASE_URL}pacientesPeninsula.json`);
+        const res = await fetch(`${import.meta.env.BASE_URL}pacientesStats.json`);
         if (res.ok) estadisticas.value = await res.json();
     } catch (e) { console.error(e); }
 });
 
-const registrarAnimal = (nuevo) => {
-    animales.value.unshift(nuevo);
-};
 </script>
 
 <template>
@@ -107,29 +106,29 @@ const registrarAnimal = (nuevo) => {
 
                     <TabPanels class="p-6">
                         <TabPanel value="0">
-                            <h3 class="text-2xl font-bold">{{ t('tabs.pacientes') }}</h3>
+                            <h3 class="text-2xl font-bold mb-2">{{ t('tabs.pacientes') }}</h3>
                             <AnimalList :animales="animales" />
                         </TabPanel>
 
                         <TabPanel value="1">
                             <div class="flex flex-col gap-4">
-                                <h3 class="text-2xl font-bold">{{ t('tabs.nuevo') }}</h3>
+                                <h3 class="text-2xl font-bold mb-2">{{ t('tabs.nuevo') }}</h3>
                                 <AnimalForm @alta-animal="registrarAnimal" />
                             </div>
                         </TabPanel>
 
                         <TabPanel value="2">
-                            <h3 class="text-2xl font-bold">{{ t('tabs.servicios') }}</h3>
+                            <h3 class="text-2xl font-bold mb-2">{{ t('tabs.servicios') }}</h3>
                             <Adoption />
                         </TabPanel>
 
                         <TabPanel value="3">
-                            <h3 class="text-2xl font-bold">{{ t('tabs.stats') }}</h3>
+                            <h3 class="text-2xl font-bold mb-2">{{ t('tabs.stats') }}</h3>
                             <AnimalStats :animales="estadisticas" />
                         </TabPanel>
 
                         <TabPanel value="4">
-                            <h3 class="text-2xl font-bold">{{ t('tabs.contacto') }}</h3>
+                            <h3 class="text-2xl font-bold mb-2">{{ t('tabs.contacto') }}</h3>
                             <ContactForm />
                         </TabPanel>
                     </TabPanels>

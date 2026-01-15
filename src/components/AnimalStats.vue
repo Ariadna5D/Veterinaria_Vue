@@ -7,14 +7,21 @@ import { useI18n } from "vue-i18n";
 // Importamos el nuevo componente
 import CustomLabel from './common/CustomLabel.vue';
 
+// son los logos importados
 import { Dog, Cat, Turtle, Bird, PawPrint } from 'lucide-vue-next';
 
+// esto es para traducir
 const { t } = useI18n();
+
+//estos son los animales que entran en el grafico
 const props = defineProps(['animales']);
 
+// este es el tipo default
 const tipoGrafico = ref('bar');
+// los diferentes tipos de gráfico
 const opciones = ref(['bar', 'pie', 'doughnut']);
 
+// esta es la configuracion de las etiquetas de colores
 const config = {
     perros: { match: 'Perro', icon: Dog, color: '#f59e0b', label: 'especies.perro' },
     gatos: { match: 'Gato', icon: Cat, color: '#10b981', label: 'especies.gato' },
@@ -23,6 +30,7 @@ const config = {
     otros: { match: 'Otro', icon: PawPrint, color: '#94a3b8', label: 'especies.otro' }
 };
 
+// computed para que se actualice la grafica con los campos en el idioma correspondiente
 const chartData = computed(() => {
     const values = Object.values(config);
     const counts = values.map(c =>
@@ -40,6 +48,7 @@ const chartData = computed(() => {
     };
 });
 
+// estas son las opciones de la gráfica, para manejarse tambien en el modo oscuro correctamente
 const chartOptions = computed(() => ({
     responsive: true,
     maintainAspectRatio: false,

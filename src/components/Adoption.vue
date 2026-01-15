@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import AnimalCard from './common/AnimalCard.vue'; // Importamos el nuevo componente reutilizable
+import AnimalCard from './common/ImageCard.vue'; // Importamos el nuevo componente reutilizable
+import ImageCard from './common/ImageCard.vue';
 
 const adopciones = ref([]);
 
@@ -30,9 +31,11 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+        <!-- For para recorrer todos los animales en adopcion-->
         <div v-for="animal in adopciones" :key="animal.id" class="h-full">
-            <AnimalCard :animal="animal" />
+            <!-- Componente de tarjeta para ver los animalitos -->
+            <ImageCard :animal="animal" />
         </div>
     </div>
 </template>

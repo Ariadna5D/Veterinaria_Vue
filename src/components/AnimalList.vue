@@ -9,19 +9,21 @@ import InputIcon from "primevue/inputicon";
 import { FilterMatchMode } from "@primevue/core/api";
 import { useI18n } from "vue-i18n";
 
-// Importamos el componente reutilizable
+// importamos el componente reutilizable
 import CustomLabel from "./common/CustomLabel.vue";
 
-// Importamos los iconos
+// importamos los iconos
 import {
     Search, FilterX, PawPrint, Dog, User,
     Phone, ClipboardList, Tag, Cat, Turtle, Bird
 } from "lucide-vue-next";
 
 const { t } = useI18n();
+
 const props = defineProps(["animales"]);
 const expandedRows = ref({});
 
+// esta es la configuracion de las etiquetas para que se muestre en la tabla con colores
 const especiesConfig = {
     'Perro': { icon: Dog, color: '#f59e0b', label: 'especies.perro' },
     'Gato': { icon: Cat, color: '#10b981', label: 'especies.gato' },
@@ -30,14 +32,18 @@ const especiesConfig = {
     'Otro': { icon: PawPrint, color: '#94a3b8', label: 'especies.otro' }
 };
 
+// de primeras sin filtros
 const filtros = ref({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
 });
 
+// Tampoco hay ningun campo de ordenacion por defecto
 const sortField = ref(null);
 const sortOrder = ref(null);
 
+// cuando se pulsa eliminar filtros
 const limpiarFiltros = () => {
+    // se devuelve todo a null
     filtros.value.global.value = null;
     sortField.value = null;
     sortOrder.value = null;

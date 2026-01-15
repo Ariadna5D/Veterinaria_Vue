@@ -7,14 +7,18 @@ const esOscuro = ref(false);
 
 const toggleDarkMode = () => {
     const element = document.querySelector('html');
+    // esta es la clase que se activará y desactivará
     element.classList.toggle('dark');
 
     const isDark = element.classList.contains('dark');
     esOscuro.value = isDark;
+    // este es el flipflop de los iconos
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
 };
 
 onMounted(() => {
+    // esperamos a que la pagina esté cargada
+    // guardamos el tema en el local storage para cuando se revisite la pagina
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 

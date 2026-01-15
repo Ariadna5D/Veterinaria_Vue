@@ -1,9 +1,13 @@
 <script setup>
 defineProps({
+    // campo
     label: String,
+    // error si está mal completo
     error: String,
+    // id del campo
     id: String,
-    icon: Object 
+    // icono del campo
+    icon: Object
 });
 </script>
 
@@ -13,10 +17,10 @@ defineProps({
             <component :is="icon" v-if="icon" :size="24" class="text-primary" />
             {{ label }}
         </label>
-        
+
         <slot></slot>
 
-        <small :id="id + '-error'" class="text-red-500 h-4 block text-xs">
+        <small v-if="error" :id="`${id}-error`" class="text-red-500" role="alert">
             {{ error }}
         </small>
     </div>

@@ -3,6 +3,7 @@ import Card from 'primevue/card';
 import Badge from 'primevue/badge';
 
 defineProps({
+    // animal a mostrar (de json)
     animal: Object
 });
 </script>
