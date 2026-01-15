@@ -15,7 +15,7 @@ import CustomLabel from "./common/CustomLabel.vue";
 // importamos los iconos
 import {
     Search, FilterX, PawPrint, Dog, User,
-    Phone, ClipboardList, Tag, Cat, Turtle, Bird
+    Phone, ClipboardList, Tag, Cat, Turtle, Bird, Rabbit, Info
 } from "lucide-vue-next";
 
 const { t } = useI18n();
@@ -29,6 +29,7 @@ const especiesConfig = {
     'Gato': { icon: Cat, color: '#10b981', label: 'especies.gato' },
     'Reptil': { icon: Turtle, color: '#6366f1', label: 'especies.reptil' },
     'Ave': { icon: Bird, color: '#ec4899', label: 'especies.ave' },
+    'Roedor': { icon: Rabbit, color: '#48c0ec', label: 'especies.roedor' },
     'Otro': { icon: PawPrint, color: '#94a3b8', label: 'especies.otro' }
 };
 
@@ -76,7 +77,7 @@ const limpiarFiltros = () => {
             <Column field="nombre" sortable>
                 <template #header>
                     <div class="flex items-center gap-2">
-                        <PawPrint :size="22" class="text-primary" />
+                        <Dog :size="22" class="text-primary" />
                         <span class="text-lg font-semibold">{{ t('pacientes.campos.nombre') }}</span>
                     </div>
                 </template>
@@ -85,7 +86,7 @@ const limpiarFiltros = () => {
             <Column field="especie" sortable>
                 <template #header>
                     <div class="flex items-center gap-2">
-                        <Dog :size="22" class="text-primary" />
+                        <PawPrint :size="22" class="text-primary" />
                         <span class="text-lg font-semibold">{{ t('pacientes.campos.especie') }}</span>
                     </div>
                 </template>
@@ -97,6 +98,15 @@ const limpiarFiltros = () => {
                     <span v-else class="text-sm italic text-muted-color">
                         {{ slotProps.data.especie }}
                     </span>
+                </template>
+            </Column>
+
+            <Column field="tipo">
+                <template #header>
+                    <div class="flex items-center gap-2">
+                        <Tag :size="22" class="text-primary" />
+                        <span class="text-lg font-semibold">{{ t('pacientes.campos.tipo') }}</span>
+                    </div>
                 </template>
             </Column>
 
@@ -136,7 +146,7 @@ const limpiarFiltros = () => {
                         <div class="flex flex-col gap-1">
                             <span
                                 class="text-xs font-bold uppercase text-muted-color tracking-wider flex items-center gap-1">
-                                <Tag :size="12" /> Registro ID
+                                <Tag :size="12" /> ID
                             </span>
                             <code class="text-sm bg-surface-200 dark:bg-surface-800 px-2 py-1 rounded w-fit">
                                 #{{ slotProps.data.id }}

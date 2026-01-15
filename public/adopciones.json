@@ -124,19 +124,5 @@
     "edad": "8 meses",
     "personalidad": ["Cariñoso", "Tranquilo"],
     "imagen": "/img/perro4.jpg"
-  },
-  {
-    "id": 11,
-    "nombre": "Oliver",
-    "edad": "7 años",
-    "personalidad": ["Independiente", "Sociable", "Leal"],
-    "imagen": "/img/gato1.jpg"
-  },
-  {
-    "id": 3,
-    "nombre": "Rocky",
-    "edad": "8 meses",
-    "personalidad": ["Leal", "Curioso", "Inteligente"],
-    "imagen": "/img/perro3.jpg"
   }
 ]

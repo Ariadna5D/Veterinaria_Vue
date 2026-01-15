@@ -19,6 +19,7 @@ const messages = {
         nombre: 'Paciente',
         especie: 'Especie',
         dueno: 'Dueño',
+        tipo: 'Tipo',
         telefono: 'Teléfono'
       },
       ficha:{
@@ -77,6 +78,7 @@ const messages = {
       gato: 'Gato',
       ave: 'Ave',
       reptil: 'Reptil',
+      roedor: 'Roedor',
       otro: 'Otro'
     }
   },
@@ -99,6 +101,7 @@ const messages = {
         nombre: 'Patient',
         especie: 'Species', 
         dueno: 'Owner',
+        tipo: 'Type',
         telefono: 'Phone'
       },
       ficha:{
@@ -160,6 +163,7 @@ const messages = {
       gato: 'Cat',
       ave: 'Bird',
       reptil: 'Reptile',
+      roedor: 'Rodent',
       otro: 'Other'
     }
   }

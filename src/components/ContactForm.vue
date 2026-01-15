@@ -52,7 +52,7 @@ const validarYEnviar = () => {
             <h2 id="contact-title" class="sr-only">{{ t('contacto.formulario.accion') }}</h2>
 
             <div class="grid md:grid-cols-2 gap-6">
-                <FormGroup :label="'CP'" :error="errores.cp" id="cp" :icon="MapPin">
+                <FormGroup :label="t('contacto.formulario.campoCP')" :error="errores.cp" id="cp" :icon="MapPin">
                     <InputText 
                         id="cp" 
                         v-model="form.cp" 

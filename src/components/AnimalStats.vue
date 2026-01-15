@@ -8,7 +8,7 @@ import { useI18n } from "vue-i18n";
 import CustomLabel from './common/CustomLabel.vue';
 
 // son los logos importados
-import { Dog, Cat, Turtle, Bird, PawPrint } from 'lucide-vue-next';
+import { Dog, Cat, Turtle, Bird, PawPrint, Rabbit } from 'lucide-vue-next';
 
 // esto es para traducir
 const { t } = useI18n();
@@ -27,6 +27,7 @@ const config = {
     gatos: { match: 'Gato', icon: Cat, color: '#10b981', label: 'especies.gato' },
     reptiles: { match: 'Reptil', icon: Turtle, color: '#6366f1', label: 'especies.reptil' },
     aves: { match: 'Ave', icon: Bird, color: '#ec4899', label: 'especies.ave' },
+    roedores: { match: 'Roedor', icon: Rabbit, color: '#48c0ec', label: 'especies.roedor' },
     otros: { match: 'Otro', icon: PawPrint, color: '#94a3b8', label: 'especies.otro' }
 };
 
