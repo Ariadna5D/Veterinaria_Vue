@@ -48,7 +48,7 @@ onMounted(async () => {
 <template>
     <div
         class="min-h-screen flex flex-col bg-surface-100 dark:bg-surface-950 text-color transition-colors duration-300">
-
+        <Toast />
         <div class="container mx-auto p-4">
             <header class="flex justify-between items-center mb-6">
                 <div class="flex items-center gap-4 text-primary">

@@ -30,9 +30,9 @@ onMounted(() => {
 </script>
 
 <template>
-    <Button @click="toggleDarkMode" :severity="esOscuro ? 'warn' : 'info'" variant="text" rounded
-        class="hover:!bg-blue-400/20 !bg-transparent dark:hover:!bg-yellow-400/20">
-        <Sun v-if="esOscuro" :size="24" />
-        <Moon v-else :size="24" />
+    <Button @click="toggleDarkMode" :severity="esOscuro ? 'info' : 'warn'" variant="text" rounded
+        class="dark:hover:!bg-blue-400/20 !bg-transparent hover:!bg-yellow-400/20">
+        <Moon v-if="esOscuro" :size="24" />
+        <Sun v-else :size="24" />
     </Button>
 </template>

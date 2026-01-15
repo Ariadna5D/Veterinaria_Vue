@@ -146,7 +146,7 @@ const alEnviar = handleSubmit((values) => {
         <Button 
             type="submit" 
             :label="t('ingreso.formulario.accion')"
-            class="w-full text-xl! font-bold! uppercase tracking-widest mt-4"
+            class="!w-full text-xl !font-bold uppercase tracking-widest mt-4"
             :aria-label="t('ingreso.formulario.accion')"
         />
     </form>

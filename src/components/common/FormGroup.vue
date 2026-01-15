@@ -1,12 +1,13 @@
 <script setup>
+
 defineProps({
-    // campo
+    // nombre de campo
     label: String,
-    // error si está mal completo
+    //error si no es correcto
     error: String,
     // id del campo
     id: String,
-    // icono del campo
+    //icono que se muestra
     icon: Object
 });
 </script>
@@ -20,7 +21,10 @@ defineProps({
 
         <slot></slot>
 
-        <small v-if="error" :id="`${id}-error`" class="text-red-500" role="alert">
+        <small 
+            v-show="error" 
+            class="text-red-500" 
+        >
             {{ error }}
         </small>
     </div>

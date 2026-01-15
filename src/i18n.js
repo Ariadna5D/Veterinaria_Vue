@@ -49,7 +49,7 @@ const messages = {
     },
     contacto:{
       errores: {
-        formato: 'Formato inválido (ej: a@b.com)',
+        formato: "Formato inválido (ej: a{'@'}b.com)",
         longitud: 'Mínimo 5 carácteres',
         telefono: 'Debe tener 9 dígitos numéricos', 
         cp: 'Código postal inválido (5 dígitos)'      
@@ -129,7 +129,7 @@ const messages = {
     },
     contacto:{
       errores: {
-        formato: 'Invalid format (ex: a@b.com)',
+        formato: "Invalid format (ex: a{'@'}b.com)",
         longitud: 'Must be 5 characters min',
         telefono: 'Must be 9 numeric digits',    
         cp: 'Invalid postal code (5 digits)'     
