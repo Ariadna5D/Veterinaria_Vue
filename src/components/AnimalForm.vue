@@ -26,6 +26,7 @@ const especies = computed(() => [
     { label: t("especies.gato"), value: "GATO" },
     { label: t("especies.reptil"), value: "REPTIL" },
     { label: t("especies.ave"), value: "AVE" },
+    { label: t("especies.roedor"), value: "ROEDOR" },
     { label: t("especies.otro"), value: "OTRO" },
 ]);
 
@@ -74,80 +75,40 @@ const alEnviar = handleSubmit((values) => {
         <h2 id="form-title" class="sr-only">{{ t('ingreso.formulario.accion') }}</h2>
 
         <div class="grid md:grid-cols-2 gap-6">
-            <FormGroup 
-                :label="t('ingreso.formulario.campos.tNombreMascota')" 
-                :error="errorNombre" 
-                id="nombre"
-                :icon="PawPrint"
-            >
-                <InputText 
-                    id="nombre" 
-                    v-model="nombre" 
-                    @blur="blurNombre" 
-                    :invalid="!!errorNombre" 
-                    aria-required="true"
-                    :aria-invalid="!!errorNombre"
-                    :aria-describedby="errorNombre ? 'nombre-error' : null"
-                />
+            <FormGroup :label="t('ingreso.formulario.campos.tNombreMascota')" :error="errorNombre" id="nombre"
+                :icon="PawPrint">
+                <InputText id="nombre" v-model="nombre" @blur="blurNombre" :invalid="!!errorNombre" aria-required="true"
+                    :aria-invalid="!!errorNombre" :aria-describedby="errorNombre ? 'nombre-error' : null" />
             </FormGroup>
 
             <FormGroup :label="t('ingreso.formulario.campos.tEspecie')" :error="errorEspecie" id="especie" :icon="Dog">
-                <Select 
-                    inputId="especie" 
-                    v-model="especie" 
-                    :options="especies" 
-                    optionLabel="label" 
-                    optionValue="value"
-                    :invalid="!!errorEspecie" 
-                    class="w-full"
-                    aria-required="true"
+                <Select inputId="especie" v-model="especie" :options="especies" optionLabel="label" optionValue="value"
+                    :invalid="!!errorEspecie" class="w-full" aria-required="true"
                     :aria-describedby="errorEspecie ? 'especie-error' : null"
-                    :placeholder="t('ingreso.formulario.campos.tEspecie')"
-                />
+                    :placeholder="t('ingreso.formulario.campos.tEspecie')" />
             </FormGroup>
         </div>
 
         <div class="grid md:grid-cols-2 gap-6">
             <FormGroup :label="t('ingreso.formulario.campos.tDueno')" :error="errorDueno" id="dueno" :icon="User">
-                <InputText 
-                    id="dueno" 
-                    v-model="dueno" 
-                    @blur="blurDueno" 
-                    :invalid="!!errorDueno"
-                    aria-required="true"
-                    :aria-describedby="errorDueno ? 'dueno-error' : null"
-                />
+                <InputText id="dueno" v-model="dueno" @blur="blurDueno" :invalid="!!errorDueno" aria-required="true"
+                    :aria-describedby="errorDueno ? 'dueno-error' : null" />
             </FormGroup>
 
-            <FormGroup :label="t('ingreso.formulario.campos.tTelefono')" :error="errorTelefono" id="telefono" :icon="Phone">
-                <InputText 
-                    id="telefono" 
-                    v-model="telefono" 
-                    @blur="blurTelefono" 
-                    type="tel"
-                    :invalid="!!errorTelefono" 
-                    aria-required="true"
-                    inputmode="tel"
-                    :aria-describedby="errorTelefono ? 'telefono-error' : null"
-                />
+            <FormGroup :label="t('ingreso.formulario.campos.tTelefono')" :error="errorTelefono" id="telefono"
+                :icon="Phone">
+                <InputText id="telefono" v-model="telefono" @blur="blurTelefono" type="tel" :invalid="!!errorTelefono"
+                    aria-required="true" inputmode="tel" :aria-describedby="errorTelefono ? 'telefono-error' : null" />
             </FormGroup>
         </div>
 
         <FormGroup :label="t('ingreso.formulario.campos.tNotas')" id="notes-group" :icon="ClipboardList">
-            <Textarea 
-                id="notas" 
-                v-model="notas" 
-                rows="3" 
-                class="w-full"
-                :aria-label="t('ingreso.formulario.campos.tNotas')"
-            />
+            <Textarea id="notas" v-model="notas" rows="3" class="w-full"
+                :aria-label="t('ingreso.formulario.campos.tNotas')" />
         </FormGroup>
 
-        <Button 
-            type="submit" 
-            :label="t('ingreso.formulario.accion')"
+        <Button type="submit" :label="t('ingreso.formulario.accion')"
             class="!w-full text-xl !font-bold uppercase tracking-widest mt-4"
-            :aria-label="t('ingreso.formulario.accion')"
-        />
+            :aria-label="t('ingreso.formulario.accion')" />
     </form>
 </template>

@@ -21,10 +21,7 @@ defineProps({
 
         <slot></slot>
 
-        <small 
-            v-show="error" 
-            class="text-red-500" 
-        >
+        <small v-show="error" class="text-red-500">
             {{ error }}
         </small>
     </div>
