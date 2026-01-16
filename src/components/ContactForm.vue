@@ -8,12 +8,14 @@ import { useToast } from 'primevue/usetoast';
 import { useI18n } from 'vue-i18n';
 import FormGroup from './common/FormGroup.vue';
 
-import { Mail, Phone, MapPin, MessageSquare, Siren } from 'lucide-vue-next';
+// Se añaden User y Tag para los nuevos campos
+import { Mail, Phone, MapPin, MessageSquare, Siren, User, Tag } from 'lucide-vue-next';
 
 const { t } = useI18n();
 const toast = useToast();
 
-const form = ref({ email: '', telefono: '', cp: '', mensaje: '' });
+// Se añaden 'nombre' y 'asunto' al objeto del formulario
+const form = ref({ nombre: '', email: '', telefono: '', cp: '', asunto: '', mensaje: '' });
 const errores = ref({});
 
 // Para probar que un formulario se puede hacer de forma "manual"
@@ -24,11 +26,31 @@ const validarYEnviar = () => {
     const phoneRegex = /^[0-9]{9}$/;
     const cpRegex = /^[0-9]{5}$/;
 
-    // mensajes de error
-    if (!emailRegex.test(form.value.email)) { errores.value.email = t('contacto.errores.formato'); esValido = false; }
-    if (!phoneRegex.test(form.value.telefono)) { errores.value.telefono = t('contacto.errores.telefono'); esValido = false; }
-    if (!cpRegex.test(form.value.cp)) { errores.value.cp = t('contacto.errores.cp'); esValido = false; }
-    if (form.value.mensaje.length < 5) { errores.value.mensaje = t('contacto.errores.longitud'); esValido = false; }
+    // mensajes de error manuales
+    if (form.value.nombre.trim().length < 3) { 
+        errores.value.nombre = t('contacto.errores.nombre'); 
+        esValido = false; 
+    }
+    if (!emailRegex.test(form.value.email)) { 
+        errores.value.email = t('contacto.errores.formato'); 
+        esValido = false; 
+    }
+    if (!phoneRegex.test(form.value.telefono)) { 
+        errores.value.telefono = t('contacto.errores.telefono'); 
+        esValido = false; 
+    }
+    if (!cpRegex.test(form.value.cp)) { 
+        errores.value.cp = t('contacto.errores.cp'); 
+        esValido = false; 
+    }
+    if (form.value.asunto.trim().length < 3) { 
+        errores.value.asunto = t('contacto.errores.asunto'); 
+        esValido = false; 
+    }
+    if (form.value.mensaje.length < 5) { 
+        errores.value.mensaje = t('contacto.errores.longitud'); 
+        esValido = false; 
+    }
 
     // en caso de ser valido, mostrar toast
     if (esValido) {
@@ -39,7 +61,8 @@ const validarYEnviar = () => {
             life: 4000
         });
 
-        form.value = { email: '', telefono: '', cp: '', mensaje: '' };
+        // Limpieza manual tras éxito
+        form.value = { nombre: '', email: '', telefono: '', cp: '', asunto: '', mensaje: '' };
     }
 };
 </script>
@@ -50,6 +73,11 @@ const validarYEnviar = () => {
 
         <form @submit.prevent="validarYEnviar" class="flex flex-col gap-6" aria-labelledby="contact-title">
             <h2 id="contact-title" class="sr-only">{{ t('contacto.formulario.accion') }}</h2>
+
+            <FormGroup :label="t('contacto.formulario.campoNombre')" :error="errores.nombre" id="nombre" :icon="User">
+                <InputText id="nombre" v-model="form.nombre" :invalid="!!errores.nombre" aria-required="true"
+                    :aria-invalid="!!errores.nombre" :aria-describedby="errores.nombre ? 'nombre-error' : null" />
+            </FormGroup>
 
             <div class="grid md:grid-cols-2 gap-6">
                 <FormGroup :label="t('contacto.formulario.campoCP')" :error="errores.cp" id="cp" :icon="MapPin">
@@ -69,6 +97,11 @@ const validarYEnviar = () => {
             <FormGroup :label="t('contacto.formulario.campoMail')" :error="errores.email" id="email" :icon="Mail">
                 <InputText id="email" v-model="form.email" type="email" :invalid="!!errores.email" aria-required="true"
                     :aria-invalid="!!errores.email" :aria-describedby="errores.email ? 'email-error' : null" />
+            </FormGroup>
+
+            <FormGroup :label="t('contacto.formulario.campoAsunto')" :error="errores.asunto" id="asunto" :icon="Tag">
+                <InputText id="asunto" v-model="form.asunto" :invalid="!!errores.asunto" aria-required="true"
+                    :aria-invalid="!!errores.asunto" :aria-describedby="errores.asunto ? 'asunto-error' : null" />
             </FormGroup>
 
             <FormGroup :label="t('contacto.formulario.campoConsulta')" :error="errores.mensaje" id="mensaje"

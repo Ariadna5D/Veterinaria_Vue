@@ -12,7 +12,8 @@ import { computed } from "vue";
 import FormGroup from './common/FormGroup.vue';
 
 // iconos para los lugares importantes
-import { PawPrint, Dog, User, Phone, ClipboardList } from 'lucide-vue-next';
+// He añadido Tag, Mail y Calendar para los nuevos campos
+import { PawPrint, Dog, User, Phone, ClipboardList, Tag, Mail, Calendar } from 'lucide-vue-next';
 
 const { t } = useI18n();
 
@@ -35,7 +36,10 @@ const esquema = computed(() =>
     yup.object({
         nombre: yup.string().required(t("ingreso.errores.nomReq")),
         especie: yup.string().required(t("ingreso.errores.espReq")),
+        tipo: yup.string().required(t("ingreso.errores.tipoReq")), 
+        fechaNacimiento: yup.date().required(t("ingreso.errores.fechaReq")), 
         dueno: yup.string().required(t("ingreso.errores.dueReq")),
+        email: yup.string().email(t("ingreso.errores.emailInv")).required(t("ingreso.errores.emailReq")), 
         telefono: yup
             .string()
             .matches(/^[0-9]{9}$/, t("ingreso.errores.num9"))
@@ -52,7 +56,10 @@ const { handleSubmit, resetForm } = useForm({
 // Los diversos errores
 const { value: nombre, errorMessage: errorNombre, handleBlur: blurNombre } = useField("nombre");
 const { value: especie, errorMessage: errorEspecie, handleBlur: blurEspecie } = useField("especie");
+const { value: tipo, errorMessage: errorTipo, handleBlur: blurTipo } = useField("tipo");
+const { value: fechaNacimiento, errorMessage: errorFecha, handleBlur: blurFecha } = useField("fechaNacimiento");
 const { value: dueno, errorMessage: errorDueno, handleBlur: blurDueno } = useField("dueno");
+const { value: email, errorMessage: errorEmail, handleBlur: blurEmail } = useField("email");
 const { value: telefono, errorMessage: errorTelefono, handleBlur: blurTelefono } = useField("telefono");
 const { value: notas } = useField("notas");
 
@@ -90,6 +97,20 @@ const alEnviar = handleSubmit((values) => {
         </div>
 
         <div class="grid md:grid-cols-2 gap-6">
+            <FormGroup :label="t('ingreso.formulario.campos.tTipo')" :error="errorTipo" id="tipo" :icon="Tag">
+                <InputText id="tipo" v-model="tipo" @blur="blurTipo" :invalid="!!errorTipo" aria-required="true"
+                    :aria-invalid="!!errorTipo" :aria-describedby="errorTipo ? 'tipo-error' : null" />
+            </FormGroup>
+
+            <FormGroup :label="t('ingreso.formulario.campos.tFechaNacimiento')" :error="errorFecha" id="fechaNacimiento"
+                :icon="Calendar">
+                <InputText id="fechaNacimiento" v-model="fechaNacimiento" type="date" @blur="blurFecha"
+                    :invalid="!!errorFecha" aria-required="true" :aria-invalid="!!errorFecha"
+                    :aria-describedby="errorFecha ? 'fecha-error' : null" />
+            </FormGroup>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
             <FormGroup :label="t('ingreso.formulario.campos.tDueno')" :error="errorDueno" id="dueno" :icon="User">
                 <InputText id="dueno" v-model="dueno" @blur="blurDueno" :invalid="!!errorDueno" aria-required="true"
                     :aria-describedby="errorDueno ? 'dueno-error' : null" />
@@ -102,13 +123,23 @@ const alEnviar = handleSubmit((values) => {
             </FormGroup>
         </div>
 
+        <div class="grid md:grid-cols-1 gap-6">
+            <FormGroup :label="t('ingreso.formulario.campos.tEmail')" :error="errorEmail" id="email" :icon="Mail">
+                <InputText id="email" v-model="email" type="email" @blur="blurEmail" :invalid="!!errorEmail"
+                    aria-required="true" :aria-invalid="!!errorEmail"
+                    :aria-describedby="errorEmail ? 'email-error' : null" />
+            </FormGroup>
+        </div>
+
         <FormGroup :label="t('ingreso.formulario.campos.tNotas')" id="notes-group" :icon="ClipboardList">
             <Textarea id="notas" v-model="notas" rows="3" class="w-full"
                 :aria-label="t('ingreso.formulario.campos.tNotas')" />
         </FormGroup>
 
-        <Button type="submit" :label="t('ingreso.formulario.accion')"
-            class="!w-full text-xl !font-bold uppercase tracking-widest mt-4"
-            :aria-label="t('ingreso.formulario.accion')" />
+        <button type="submit" :label="t('ingreso.formulario.accion')"
+            class="!w-full text-xl !font-bold uppercase tracking-widest mt-4 p-button p-component p-button-label"
+            :aria-label="t('ingreso.formulario.accion')">
+            <span class="p-button-label">{{ t('ingreso.formulario.accion') }}</span>
+        </button>
     </form>
 </template>

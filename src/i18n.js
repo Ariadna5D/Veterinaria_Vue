@@ -31,9 +31,13 @@ const messages = {
       titulo: 'Registro Animal',
       errores: {
         nomReq: 'El nombre es obligatorio',
-        espReq: 'selecciona una especie',
+        espReq: 'Selecciona una especie',
         dueReq: 'El dueño es obligatorio',
-        num9: 'Debe tener 9 dígitos'
+        num9: 'Debe tener 9 dígitos',
+        tipoReq: 'El tipo/raza es obligatorio', 
+        fechaReq: 'La fecha de nacimiento es obligatoria', 
+        emailReq: 'El email es obligatorio', 
+        emailInv: 'Formato de email no válido' 
       },
       formulario: {
         accion: 'Registrar',
@@ -42,7 +46,10 @@ const messages = {
         campos: {
           tNombreMascota: 'Nombre Mascota',
           tEspecie: 'Especie',
+          tTipo: 'Tipo/Raza', 
+          tFechaNacimiento: 'Fecha de Nacimiento', 
           tDueno: 'Dueño',
+          tEmail: 'Correo Electrónico', 
           tTelefono: 'Teléfono',
           tNotas: 'Notas'
         }
@@ -51,16 +58,20 @@ const messages = {
     contacto:{
       errores: {
         formato: "Formato inválido (ej: a{'@'}b.com)",
-        longitud: 'Mínimo 5 carácteres',
+        longitud: 'Mínimo 5 caracteres',
         telefono: 'Debe tener 9 dígitos numéricos', 
-        cp: 'Código postal inválido (5 dígitos)'      
+        cp: 'Código postal inválido (5 dígitos)',
+        nombre: 'El nombre debe tener al menos 3 caracteres', 
+        asunto: 'El asunto es obligatorio' 
       },
       formulario:{
         exito: 'Mensaje enviado',
         titulo: 'Contacto Rápido',
+        campoNombre: 'Nombre Completo', 
         campoMail: 'Tu Email',
         campoTelefono: 'Teléfono',      
         campoCP: 'Código Postal',       
+        campoAsunto: 'Asunto de la consulta', 
         campoConsulta: 'Consulta',
         accion: 'Enviar Consulta'
       },
@@ -82,7 +93,6 @@ const messages = {
       otro: 'Otro'
     }
   },
-
 
   en: {
     titulo: 'Veterinary Clinic',
@@ -115,7 +125,11 @@ const messages = {
         nomReq: 'The name is required',
         espReq: 'Select a species', 
         dueReq: 'Owner required',
-        num9: 'Must be 9 digits'
+        num9: 'Must be 9 digits',
+        tipoReq: 'Type/Breed is required', 
+        fechaReq: 'Date of birth is required', 
+        emailReq: 'Email is required', 
+        emailInv: 'Invalid email format' 
       },
       formulario: {
         accion: 'Register',
@@ -124,7 +138,10 @@ const messages = {
         campos: {
           tNombreMascota: 'Pet Name',
           tEspecie: 'Species',
+          tTipo: 'Type/Breed', 
+          tFechaNacimiento: 'Date of Birth', 
           tDueno: 'Owner',
+          tEmail: 'Email Address', 
           tTelefono: 'Phone Number',
           tNotas: 'Notes'
         }
@@ -135,14 +152,18 @@ const messages = {
         formato: "Invalid format (ex: a{'@'}b.com)",
         longitud: 'Must be 5 characters min',
         telefono: 'Must be 9 numeric digits',    
-        cp: 'Invalid postal code (5 digits)'     
+        cp: 'Invalid postal code (5 digits)',
+        nombre: 'Name must be at least 3 characters', 
+        asunto: 'Subject is required' 
       },
       formulario:{
         exito: 'Message Sent',
         titulo: 'Quick Contact',
+        campoNombre: 'Full Name', 
         campoMail: 'Your Email',
         campoTelefono: 'Phone',         
         campoCP: 'Postal Code',         
+        campoAsunto: 'Subject', 
         campoConsulta: 'Enquiry',
         accion: 'Send Enquiry'
       },
