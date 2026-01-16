@@ -18,7 +18,7 @@ import AnimalStats from './components/AnimalStats.vue';
 
 
 // estos son los iconos
-import { PawPrint, PlusCircle, Heart, ChartBar, Mail, Dog, Globe } from 'lucide-vue-next';
+import { PawPrint, PlusCircle, Heart, ChartBar, Mail, Dog, Languages } from 'lucide-vue-next';
 
 // esto es para usar el cambio de idioma
 const { t, locale } = useI18n();
@@ -59,8 +59,8 @@ onMounted(async () => {
 
                     <ThemeToggle />
                     <Button @click="toggleIdioma" class="">
-                        <Globe :size="20" aria-hidden="true" :stroke-width="2" />
-                        <span>{{ t('btn_idioma') }}</span>
+                        <Languages :size="22" aria-hidden="true" :stroke-width="2" />
+                        <span class="font-bold">{{ t('btn_idioma') }}</span>
                     </Button>
                 </div>
             </header>

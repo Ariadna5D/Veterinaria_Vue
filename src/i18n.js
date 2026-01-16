@@ -4,7 +4,7 @@ import { createI18n } from 'vue-i18n';
 const messages = {
   es: {
     titulo: 'Clínica Veterinaria',
-    btn_idioma: 'English',
+    btn_idioma: 'Español',
     tabs: {
       pacientes: 'Pacientes',
       nuevo: 'Ingreso',
@@ -86,7 +86,7 @@ const messages = {
 
   en: {
     titulo: 'Veterinary Clinic',
-    btn_idioma: 'Español',
+    btn_idioma: 'English',
     tabs: {
       pacientes: 'Patients',
       nuevo: 'Admission',

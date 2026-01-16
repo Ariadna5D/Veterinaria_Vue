@@ -64,8 +64,8 @@ const limpiarFiltros = () => {
             <Button type="button" severity="secondary" outlined @click="limpiarFiltros"
                 :disabled="!filtros.global.value && !sortField"
                 :class="{ '!bg-red-500 !text-white !border-red-500': filtros.global.value || sortField }"
-                class="flex items-center gap-2">
-                <FilterX :size="16" />
+                class="flex items-center gap-2 transition duration-400 ">
+                <FilterX :size="22" />
             </Button>
         </div>
 

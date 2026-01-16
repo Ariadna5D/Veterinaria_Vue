@@ -106,14 +106,14 @@ const validarYEnviar = () => {
             <Button 
                 type="submit" 
                 :label="t('contacto.formulario.accion')"
-                class="w-full !text-xl !font-bold uppercase tracking-widest" 
+                class="w-full !text-xl !font-bold uppercase tracking-widest mt-4" 
                 :aria-label="t('contacto.formulario.accion')"
             />
 
             <div
                 role="region"
                 :aria-label="t('contacto.urgencias.titulo')"
-                class="mt-4 p-4 flex items-center gap-4 border-l-4 border-red-500 rounded-r-lg bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400"
+                class="mt-4 p-4 flex items-center gap-4 border-l-4 border-red-500 rounded-r-lg bg-red-100 dark:bg-red-950/20 text-red-600 dark:text-red-400"
             >
                 <div class="p-2 bg-red-500 rounded-full animate-pulse shrink-0" aria-hidden="true">
                     <Siren color="white" :size="24" />
